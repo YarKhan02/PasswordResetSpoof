@@ -1,0 +1,5 @@
+curl -Uri "http://127.0.0.1:5000/confirm-password" `
+     -Method POST `
+     -Headers @{ "Content-Type" = "application/json" } `
+     -Body '{"token": "tQX0MRohLMSS7EI2C0nT7-WnAFszNngRwY8pTrl6jE0", "new_password": "newsecurepassword"}'
+

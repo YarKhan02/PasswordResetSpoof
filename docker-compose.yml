@@ -1,0 +1,66 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - FLASK_APP=app/main.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://postgres:password@db:5432/mydatabase
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "4567:80"
+    volumes:
+      - ./frontend/src:/usr/share/nginx/html:ro
+    networks:
+      - app_network
+
+  server:
+    build:
+      context: ./attacker_server
+    ports:
+      - "8888:8888"
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_RUN_HOST=0.0.0.0
+    volumes:
+      - ./attacker_server:/app
+    networks:
+      - app_network
+
+  attacker_frontend:
+    build:
+      context: ./attacker_frontend
+    ports:
+      - "7654:80"
+    networks:
+      - app_network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+volumes:
+  db_data:
+
+networks:
+  app_network:
+    driver: bridge

@@ -121,3 +121,36 @@ After successfully resetting the victim's password, the attacker can now log in 
 
 # Conclusion
 This demonstration highlights the risks associated with insecure password reset implementations and the exploitation of trust in the `Host` header. By manipulating the reset process, attackers can capture sensitive tokens, gain unauthorized access to user accounts, and compromise the security of the system. Implementing proper validations, such as whitelisting `Host` headers, securing reset tokens, and employing multi-factor authentication, can help mitigate these attacks.
+
+# Project Explanation and Objective
+
+This project demonstrates the concept of **Host Header Manipulation** in a controlled environment for learning and testing purposes. Here's what I set up:
+
+### Setup Overview:
+1. **Backend**: 
+   - Represents the legitimate server backend.
+   - Handles password reset functionality, including generating reset tokens and validating them.
+
+2. **Frontend**:
+   - Serves as the legitimate frontend for the target website.
+   - Includes pages like login, reset password, etc.
+
+3. **Attacker Server**:
+   - A malicious server controlled by the attacker.
+   - Captures reset tokens when the victim interacts with a malicious link.
+
+---
+
+### Purpose:
+- **Concept Clarity**:
+  - This setup is designed to understand and demonstrate how Host Header Manipulation works in practice.
+  - It assumes that each container represents a different domain (based on ports).
+- **Testing Locally**:
+  - By running all containers locally on different ports, I simulate real-world interactions without requiring a live environment or domain names.
+- **Learning**:
+  - The primary goal is to learn and test the security vulnerabilities associated with improper Host Header validation in web applications.
+
+---
+
+### Important Note:
+This setup is solely for educational purposes and testing in a controlled environment. It should not be used for malicious activities or to exploit vulnerabilities in real-world systems. Always follow ethical guidelines when working on cybersecurity-related projects.

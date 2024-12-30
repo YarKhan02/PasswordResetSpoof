@@ -4,6 +4,9 @@ FROM python:3.10-slim
 # Set the working directory in the container
 WORKDIR /app
 
+COPY wait-for.sh /app/wait-for.sh
+RUN chmod +x /app/wait-for.sh
+
 # Copy everything from the backend folder into the container
 COPY . /app
 

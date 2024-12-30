@@ -72,7 +72,7 @@ Explanation: This step triggers the password reset process, and the server will 
    In **Burp Suite**, modify the `Host` header to point to the attacker's domain (e.g., `attacker.com`). This change ensures that the server generates the reset link using the malicious domain.
 
    **Modified Request Screenshot**:
-   ![Modified Request](images/modified_request.png)
+   ![Modified Request](images/modify_header.png)
 
 ### Step 4: Victim Receives Email and Clicks Malicious Link
 
